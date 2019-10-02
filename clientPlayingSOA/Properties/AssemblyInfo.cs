@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("wfControlProteinas")]
+[assembly: AssemblyTitle("clientPlayingSOA")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("wfControlProteinas")]
+[assembly: AssemblyProduct("clientPlayingSOA")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("304b3e62-76f7-4077-9809-0034380e9194")]
+[assembly: Guid("e67f3d75-9608-432c-91e0-b1a833e67858")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace wfControlProteinas.Properties
+namespace clientPlayingSOA.Properties
 {
 
 

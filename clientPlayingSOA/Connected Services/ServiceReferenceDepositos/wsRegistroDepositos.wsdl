@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="https://www.uca.edu.ni/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="https://www.uca.edu.ni/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="https://www.uca.edu.ni/">
+      <s:element name="AgregarDeposito">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="cantidad" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="idUsuario" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AgregarDepositoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AgregarDepositoResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AgregarUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="meta" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AgregarUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AgregarUsuarioResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ListaUsuarios">
+        <s:complexType />
+      </s:element>
+      <s:element name="ListaUsuariosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ListaUsuariosResult" type="tns:ArrayOfUsuario" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUsuario">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Usuario" nillable="true" type="tns:Usuario" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Usuario">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Meta" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Total" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="UsuarioId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AgregarDepositoSoapIn">
+    <wsdl:part name="parameters" element="tns:AgregarDeposito" />
+  </wsdl:message>
+  <wsdl:message name="AgregarDepositoSoapOut">
+    <wsdl:part name="parameters" element="tns:AgregarDepositoResponse" />
+  </wsdl:message>
+  <wsdl:message name="AgregarUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:AgregarUsuario" />
+  </wsdl:message>
+  <wsdl:message name="AgregarUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:AgregarUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="ListaUsuariosSoapIn">
+    <wsdl:part name="parameters" element="tns:ListaUsuarios" />
+  </wsdl:message>
+  <wsdl:message name="ListaUsuariosSoapOut">
+    <wsdl:part name="parameters" element="tns:ListaUsuariosResponse" />
+  </wsdl:message>
+  <wsdl:portType name="wsRegistroDepositosSoap">
+    <wsdl:operation name="AgregarDeposito">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Agregar un monto al total acumulado.</wsdl:documentation>
+      <wsdl:input message="tns:AgregarDepositoSoapIn" />
+      <wsdl:output message="tns:AgregarDepositoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AgregarUsuario">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Agrega un usuario al repositorio.</wsdl:documentation>
+      <wsdl:input message="tns:AgregarUsuarioSoapIn" />
+      <wsdl:output message="tns:AgregarUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ListaUsuarios">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Listado de usuarios en repositorio.</wsdl:documentation>
+      <wsdl:input message="tns:ListaUsuariosSoapIn" />
+      <wsdl:output message="tns:ListaUsuariosSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="wsRegistroDepositosSoap" type="tns:wsRegistroDepositosSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AgregarDeposito">
+      <soap:operation soapAction="https://www.uca.edu.ni/AgregarDeposito" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarUsuario">
+      <soap:operation soapAction="https://www.uca.edu.ni/AgregarUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaUsuarios">
+      <soap:operation soapAction="https://www.uca.edu.ni/ListaUsuarios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="wsRegistroDepositosSoap12" type="tns:wsRegistroDepositosSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AgregarDeposito">
+      <soap12:operation soapAction="https://www.uca.edu.ni/AgregarDeposito" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AgregarUsuario">
+      <soap12:operation soapAction="https://www.uca.edu.ni/AgregarUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListaUsuarios">
+      <soap12:operation soapAction="https://www.uca.edu.ni/ListaUsuarios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="wsRegistroDepositos">
+    <wsdl:port name="wsRegistroDepositosSoap" binding="tns:wsRegistroDepositosSoap">
+      <soap:address location="http://localhost:53761/wsRegistroDepositos.asmx" />
+    </wsdl:port>
+    <wsdl:port name="wsRegistroDepositosSoap12" binding="tns:wsRegistroDepositosSoap12">
+      <soap12:address location="http://localhost:53761/wsRegistroDepositos.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
