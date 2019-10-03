@@ -26,19 +26,27 @@ namespace clientPlayingSOA
             cmbUsuarios.DataSource = usuarios;
             cmbUsuarios.DisplayMember = "Nombre";
             cmbUsuarios.ValueMember = "UsuarioId";
+            if(cmbUsuarios.Items.Count > 0)
+                cmbUsuarios.SelectedIndex = 0;
         }
 
         private void btnAgregarUsuario_Click(object sender, EventArgs e)
         {
-            if(txtNombreUsuario.Text.Trim() != "" && txtMetaUsuario.Text.Trim() != "")
+            if(txtNombreUsuario.Text.Trim() != "" && nudMetaUsuario.Value > 0)
             {
-                servicio.AgregarUsuario(txtNombreUsuario.Text, int.Parse(txtMetaUsuario.Text));
+                servicio.AgregarUsuario(txtNombreUsuario.Text, Convert.ToInt32(nudMetaUsuario.Value));
                 usuarios = servicio.ListaUsuarios();
                 cmbUsuarios.DataSource = usuarios;
-
-                txtNombreUsuario.Text = "";
-                txtMetaUsuario.Text = "";
+                
+                MessageBox.Show("Usuario agregado con éxito.");
             }
+            else
+            {
+                MessageBox.Show("Por favor, complete todos los campos de usuario.");
+            }
+
+            txtNombreUsuario.Text = "";
+            nudMetaUsuario.Value = 0;
         }
 
         private void CambiarSeleccionUsuario(object sender, EventArgs e)
@@ -50,11 +58,21 @@ namespace clientPlayingSOA
 
         private void Depositar(object sender, EventArgs e)
         {
-            int usuarioId = usuarios[cmbUsuarios.SelectedIndex].UsuarioId;
-            int nuevoTotal = servicio.AgregarDeposito(int.Parse(txtCantidad.Text), usuarioId);
-            usuarios[cmbUsuarios.SelectedIndex].Total = nuevoTotal;
-            lblTotal.Text = nuevoTotal.ToString();
-            txtCantidad.Text = "";
+            
+            if(nudCantidad.Value > 0)
+            {
+                int usuarioId = usuarios[cmbUsuarios.SelectedIndex].UsuarioId;
+                int nuevoTotal = servicio.AgregarDeposito(Convert.ToInt32(nudCantidad.Value), usuarioId);
+                usuarios[cmbUsuarios.SelectedIndex].Total = nuevoTotal;
+                lblTotal.Text = nuevoTotal.ToString();
+                nudCantidad.Value = 0;
+
+                MessageBox.Show("Depósito realizado con éxito.");
+            }
+            else
+            {
+                MessageBox.Show("Cantidad debe ser mayor a 0.");
+            }
         }
     }
 }

@@ -42,10 +42,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnAgregarDeposito = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtMetaUsuario = new System.Windows.Forms.TextBox();
-            this.txtCantidad = new System.Windows.Forms.TextBox();
+            this.nudMetaUsuario = new System.Windows.Forms.NumericUpDown();
+            this.nudCantidad = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMetaUsuario)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -68,8 +70,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.txtMetaUsuario);
             this.groupBox1.Controls.Add(this.txtNombreUsuario);
+            this.groupBox1.Controls.Add(this.nudMetaUsuario);
             this.groupBox1.Controls.Add(this.btnAgregarUsuario);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
@@ -117,7 +119,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.txtCantidad);
+            this.groupBox2.Controls.Add(this.nudCantidad);
             this.groupBox2.Controls.Add(this.lblMeta);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.lblTotal);
@@ -186,19 +188,29 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Cantidad";
             // 
-            // txtMetaUsuario
+            // nudMetaUsuario
             // 
-            this.txtMetaUsuario.Location = new System.Drawing.Point(53, 45);
-            this.txtMetaUsuario.Name = "txtMetaUsuario";
-            this.txtMetaUsuario.Size = new System.Drawing.Size(139, 20);
-            this.txtMetaUsuario.TabIndex = 4;
+            this.nudMetaUsuario.Location = new System.Drawing.Point(53, 46);
+            this.nudMetaUsuario.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.nudMetaUsuario.Name = "nudMetaUsuario";
+            this.nudMetaUsuario.Size = new System.Drawing.Size(139, 20);
+            this.nudMetaUsuario.TabIndex = 4;
             // 
-            // txtCantidad
+            // nudCantidad
             // 
-            this.txtCantidad.Location = new System.Drawing.Point(58, 28);
-            this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(139, 20);
-            this.txtCantidad.TabIndex = 5;
+            this.nudCantidad.Location = new System.Drawing.Point(58, 29);
+            this.nudCantidad.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.nudCantidad.Name = "nudCantidad";
+            this.nudCantidad.Size = new System.Drawing.Size(139, 20);
+            this.nudCantidad.TabIndex = 5;
             // 
             // wfRegistroDepositos
             // 
@@ -221,6 +233,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMetaUsuario)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -242,8 +256,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnAgregarDeposito;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtMetaUsuario;
-        private System.Windows.Forms.TextBox txtCantidad;
+        private System.Windows.Forms.NumericUpDown nudMetaUsuario;
+        private System.Windows.Forms.NumericUpDown nudCantidad;
     }
 }
 
