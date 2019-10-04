@@ -12,41 +12,56 @@
         <asp:ScriptManager runat="server" EnablePageMethods="true">
         </asp:ScriptManager>
         <div>
-            <h1>Registro Web de Depósitos</h1>
+            <div class="encabezado">
+                <h1>REGISTRO WEB DE DEPÓSITOS</h1>
+            </div>
             <br />
             <hr />
-            <div>
+            <div class="texto-centrado">
                 <label for="seleccion-usuario">Seleccione un usuario:</label>
                 <select id="seleccion-usuario"></select>
+                <div>
+                    Total:
+                    <span id="total-usuario">0</span>
+                    <br />
+                    Meta:
+                    <span id="meta-usuario">0</span>
+                </div>
             </div>
             <hr />
-            <div>
-                <h2>Nuevo Usuario</h2>
+            <div class="texto-centrado">
+                <h2 class="verde">Nuevo Usuario</h2>
+                <table align="center">
+                    <tr>
+                        <td><label for="nombre">Nombre:</label></td>
+                        <td><input id="nombre" type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="meta">Meta:</label></td>
+                        <td><input id="meta" type="number" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input class="boton" type="button" onclick="AgregarUsuario()" value="Agregar" /></td>
+                    </tr>
+                </table>
                 <br />
-                <label for="nombre">Nombre:</label>
-                <input id="nombre" type="text" />
-                <br />
-                <label for="meta">Meta:</label>
-                <input id="meta" type="number" />
-                <br />
-                <input id="btn-agregar-usuario" type="button" onclick="AgregarUsuario()" value="Agregar" />
+                
             </div>
+            <br />
             <hr />
-            <div>
-                <h2>Realizar Depósito</h2>
-                <br />
-                <label for="cantidad">Cantidad:</label>
-                <input id="cantidad" type="number" />
-                <br />
-                <input id="btn-agregr-deposito" type="button" onclick="AgregarDeposito()" value="Confirmar" />
+            <div class="texto-centrado">
+                <h2 class="verde">Realizar Depósito</h2>
+                 <table align="center">
+                    <tr>
+                        <td><label for="cantidad">Cantidad:</label></td>
+                        <td><input id="cantidad" type="number" /></td>
+                    </tr>
+                     <tr>
+                         <td colspan="2"><input class="boton" type="button" onclick="AgregarDeposito()" value="Confirmar" /></td>
+                     </tr>
+                </table>
             </div>
-            <div>
-                Total:
-                <span id="total-usuario"></span>
-                <br />
-                Meta:
-                <span id="meta-usuario"></span>
-            </div>
+            
         </div>
     </form>
     <script type="text/javascript">
@@ -69,7 +84,7 @@
                 debugger;
                 for (var i = 0; i < usuarios.length; i++) {
                     usuarioSeleccionado.append($('<option></option>')
-                        .add('value', usuarios[i].UsuarioId)
+                        .attr('value', usuarios[i].UsuarioId)
                         .text(usuarios[i].Nombre)
                     );
                 }
@@ -96,8 +111,14 @@
                 data: JSON.stringify({ 'nombre': nombre, 'meta': meta }),
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
-                success: CargarListaUsuarios
+                success: function () {
+                    CargarListaUsuarios();
+                    Alert('Usuario agregado correctamente.');
+                }
             });
+
+            $('#nombre').val('');;
+            $('#meta').val('');
         }
 
         function AgregarDeposito() {
@@ -110,7 +131,37 @@
                 }
                 ActualizarDatosUsuario();
             });
+            $('#cantidad').val('');
+            Alert('Depósito agregado correctamente.');
         }
     </script>
+    <style>
+
+        body{
+            background-color:#F2F2F2;
+            color:#0D0D0D;
+        }
+        .encabezado{
+            background:#52A646;
+            color:#FFFFFF;
+            padding:5px;
+            text-align:center;
+        }
+        .texto-centrado{
+            text-align:center;
+            margin: 5px;
+        }
+        .verde{
+            color:#52A646;
+        }
+        .boton{
+            background: #52A646;
+            border: none;
+            padding: 5px;
+            margin: 5px;
+            color: white;
+            width: 100%;
+        }
+    </style>
 </body>
 </html>
